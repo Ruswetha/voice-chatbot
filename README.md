@@ -1,27 +1,32 @@
-# Voice + Text Chatbot System
+# 🎤 Voice Chatbot System
 
-## Description
-This project is a real-time Voice and Text Chatbot that uses Speech Recognition and Speech Synthesis APIs. It allows users to speak or type messages and get responses from the chatbot.
+## 📌 Project Description
+This is a real-time voice chatbot that takes voice input from the user, converts it into text, processes it using AI logic, and responds back using speech output.
 
-## Features
-- Voice input using microphone
-- Text input support
-- Speech-to-Text conversion
-- Text-to-Speech response
-- Chat history display
+## 🚀 Features
+- Speech-to-Text (Voice input)
+- AI response generation
+- Text-to-Speech output
+- Real-time conversation
+- Simple web interface (HTML, JS)
 
-## Technologies Used
+## 🛠️ Technologies Used
 - HTML
 - JavaScript
-- Web Speech API (SpeechRecognition + SpeechSynthesis)
+- Web Speech API
 
-## How it works
-User speaks or types → system converts input → AI logic processes → bot replies → response is shown and spoken.
+## ▶️ How to Run
+1. Download or clone this repository
+2. Open `index.html` in browser
+3. Allow microphone access
+4. Start speaking
 
-## How to run
-1. Open index.html in Chrome
-2. Allow microphone access
-3. Click Speak or type message
+## 📷 Output
+<img width="800" height="503" alt="image" src="https://github.com/user-attachments/assets/e443f4a7-7363-4828-b9b1-5063ab48f8ad" />
 
-## Author
-Student Project - Voice Chatbot System
+
+## 🔗 Live Demo
+https://github.com/Ruswetha/voice-chatbot
+
+## 👩‍💻 Author
+Ruswetha
