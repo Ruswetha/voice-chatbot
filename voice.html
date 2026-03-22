@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Voice + Text Chatbot</title>
+</head>
+
+<body style="font-family: Arial; margin:20px;">
+
+<h2>Chatbot</h2>
+
+<div id="chatBox" style="
+  border:1px solid #ccc;
+  height:300px;
+  overflow-y:auto;
+  padding:10px;
+  margin-bottom:10px;
+  text-align:left;
+"></div>
+
+<input type="text" id="inputBox" placeholder="Type your message">
+<button onclick="sendText()">Send</button>
+
+<button onclick="startListening()">Speak</button>
+
+<script>
+
+// ---------------- STT ----------------
+let recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+recognition.lang = "en-IN";
+recognition.continuous = false;
+
+let userName = "";
+
+recognition.onresult = function(event) {
+    let text = event.results[0][0].transcript;
+    processInput(text);
+};
+
+function startListening() {
+    recognition.start();
+}
+
+// ---------------- CHAT UI ----------------
+function addMessage(sender, text) {
+
+    let chatBox = document.getElementById("chatBox");
+
+    let msg = document.createElement("div");
+    msg.style.margin = "5px 0";
+    msg.innerHTML = "<b>" + sender + ":</b> " + text;
+
+    chatBox.appendChild(msg);
+
+    chatBox.scrollTop = chatBox.scrollHeight;
+}
+
+// ---------------- TEXT INPUT ----------------
+function sendText() {
+    let text = document.getElementById("inputBox").value;
+    if(text.trim() !== "") {
+        processInput(text);
+        document.getElementById("inputBox").value = "";
+    }
+}
+
+function processInput(text) {
+
+    addMessage("You", text);
+
+    let reply = getReply(text.toLowerCase());
+
+    addMessage("Bot", reply);
+
+    speak(reply);
+}
+
+// ---------------- AI LOGIC ----------------
+function getReply(msg) {
+
+    // NAME MEMORY
+    if (msg.includes("my name is")) {
+        userName = msg.split("my name is")[1].trim();
+        return "Nice to meet you " + userName;
+    }
+
+    if (msg.includes("what is my name")) {
+        return userName ? "Your name is " + userName : "I don't know your name yet";
+    }
+
+    if (msg.includes("hello") || msg.includes("hi")) {
+        return userName ? "Hello " + userName + "! How are you?" : "Hello! How are you?";
+    }
+
+    if (msg.includes("how are you")) {
+        return userName ? "I am good. How about you " + userName + "?" : "I am good. How about you?";
+    }
+
+    if (msg.includes("name")) {
+        return "I am your chatbot assistant";
+    }
+
+    if (msg.includes("ai")) {
+        return "AI makes machines smart";
+    }
+
+    if (msg.includes("bye")) {
+        return userName ? "Goodbye " + userName : "Goodbye";
+    }
+
+    return "Tell me more. I am here to talk with you";
+}
+
+// ---------------- TTS ----------------
+function speak(text) {
+
+    speechSynthesis.cancel();
+
+    let speech = new SpeechSynthesisUtterance(text);
+    speech.lang = "en-IN";
+    speech.rate = 1;
+
+    speechSynthesis.speak(speech);
+}
+
+</script>
+
+</body>
+</html>
