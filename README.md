@@ -24,9 +24,5 @@ This is a real-time voice chatbot that takes voice input from the user, converts
 ## 📷 Output
 <img width="800" height="503" alt="image" src="https://github.com/user-attachments/assets/e443f4a7-7363-4828-b9b1-5063ab48f8ad" />
 
-
-## 🔗 Live Demo
-https://github.com/Ruswetha/voice-chatbot
-
 ## 👩‍💻 Author
 Ruswetha
